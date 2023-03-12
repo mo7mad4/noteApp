@@ -5,9 +5,10 @@ const { authenticator } = require('../middlewares/authenticator');
 const { NoteModel } = require('../models/NoteModel');
 const noteRouter = express.Router();
 
+//use authorization for note Router
 noteRouter.use(authenticator)
 
-
+// get all note for one user by token 
 noteRouter.get("/", async (req, res) => {
     const token = req.headers.authorization
     jwt.verify(token, "Mohammed", async (err, decode) => {
@@ -31,6 +32,7 @@ noteRouter.get("/", async (req, res) => {
 })
 
 
+//modfiy note for user by id 
 noteRouter.patch("/", async(req, res) => {
     let { id } = req.headers
     
@@ -50,7 +52,7 @@ noteRouter.patch("/", async(req, res) => {
     
 })
 
-
+//delete note for user by id 
 noteRouter.delete("/", async(req, res) => {
     let { id } = req.headers
     
@@ -70,7 +72,7 @@ noteRouter.delete("/", async(req, res) => {
     
 })
 
-
+//create note by user token
 noteRouter.post("/create", async (req, res) => {
     try {
         let note = new NoteModel(req.body)
