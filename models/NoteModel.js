@@ -8,8 +8,8 @@ const noteSchema = mongoose.Schema({
     versionKey: false
 })
 
-const NoteSchema = mongoose.model("note", noteSchema)
+const NoteModel = mongoose.model("note", noteSchema)
 
 module.exports = {
-    NoteSchema
+    NoteModel
 }
